@@ -18,7 +18,8 @@ def addStudent(dict):
 
 # Функция для добавления оценок студенту по предмету (непрерывный ввод)
 def add_grades_continuously(students):
-    name = input("Введите имя студента для добавления оценок (или 'стоп' для выхода): ")
+    print(Fore.CYAN + "Введите имя студента для добавления оценок (или 'стоп' для выхода):", end=' ')
+    name = input()
     if name.lower() == "стоп":
         return
 
@@ -53,20 +54,42 @@ def add_grades_continuously(students):
 
 def showStudents(students):
     for item in students:
-        print(f'{item}, Возраст: {students[item][0]}, Группа: {students[item][1]}')
+        print(Fore.WHITE + f'{item}, Возраст: {students[item][0]}, Группа: {students[item][1]}')
         for grade in students[item][2]:
             average = sum(students[item][2][grade]) / len(students[item][2][grade])
             print(Fore.CYAN + f'{grade}: ', (round(average, 2)))
+        print()
 
 def studentSearch(students):
-    x = input(Fore.LIGHTBLUE_EX + 'Введите имя студента: ')
-    result = students.get(x, (Fore.RED + 'студент не найден'))
+    item = input(Fore.LIGHTBLUE_EX + 'Введите имя студента: ')
+    result = students.get(item, (Fore.RED + 'студент не найден'))
     if result != (Fore.RED + 'студент не найден'):
-        print(f'{x}, Возраст: {result[0]}, Группа: {result[1]}')
-        for grade in students.get(x):
-            ...
+        print(f'{item}, Возраст: {result[0]}, Группа: {result[1]}')
+        for grade in students[item][2]:
+            average = sum(students[item][2][grade]) / len(students[item][2][grade])
+            print(Fore.CYAN + f'{grade}: ', (round(average, 2)))
     else:
-        ...
+        print(Fore.RED + 'Студент не найден!')
+
+def showCoolStudents(students):
+    req = tryExceptInt('Введите пороговое значение среднего балла: ')
+    if req >= 1 and req <=5:
+        n = 0
+        for item in students:
+            sumOfGrades = 0
+            k = 0
+            for grade in students[item][2]:
+                for i in students[item][2][grade]:
+                    k += 1
+                    sumOfGrades += i
+            if (sumOfGrades/k) > req:
+                print(Fore.WHITE + item, end='\n\n')
+                n += 1
+        if n == 0:
+            print(Fore.RED + 'подходящие студенты не найдены! \n')
+    else:
+        print(Fore.BLUE + 'Введено некорретное значение')
+        showCoolStudents(students)
 
 
 

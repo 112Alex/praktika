@@ -30,26 +30,23 @@ while exit:
     print('Выход\n')
 
     action = selectAction_value('Выбирите действие: ', 'Пожалуйста, введите число (от 1 до 7)')
+    print('--------------------')
 
     match action:
         case 1:
             students = {**students, **addStudent(students)} # {name: (age, group {предмет: оценка)}
-            print(students)
         case 2:
             add_grades_continuously(students)
-            print(students)
         case 3:
             showStudents(students)
         case 4:
             studentSearch(students)
         case 5:
-            ...
+            showCoolStudents(students)
         case 6:
             ...
         case 7:
             exit = False
-        case _:
-            print('Введено неверное значение')
 
 
 
