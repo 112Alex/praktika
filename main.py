@@ -10,7 +10,7 @@ from tryExcept import *
 init(autoreset=True)
 
 exit = True
-students = {"Antonio": (18, '21 ИС', {'математика': [2, 5], 'литература': [4, 4]})} # {name: (age, group {предмет: оценка)}
+students = {"Antonio": (18, '21 ИС', {'математика': [2, 5], 'литература': [4, 5, 5], 'химия': [2, 3, 2]})} # {name: (age, group {предмет: оценка)}
 
 while exit:
 
@@ -49,7 +49,7 @@ while exit:
         case 7:
             exit = False
         case _:
-            print('z')
+            print('Введено неверное значение')
 
 
 

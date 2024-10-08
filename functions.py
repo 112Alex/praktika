@@ -1,12 +1,15 @@
 from colorama import Fore, Back, Style
+from colorama import init
+init()
+init(autoreset=True)
 
 from tryExcept import tryExceptInt
 
 
 def addStudent(dict):
-    name = input(Fore.BLUE + 'Введите фио студента: ')
+    name = input(Fore.LIGHTBLUE_EX + 'Введите фио студента: ')
     age = tryExceptInt('Введите возраст студента: ')
-    group = input(Fore.BLUE + 'Введите группу студента: ')
+    group = input(Fore.LIGHTBLUE_EX + 'Введите группу студента: ')
     tup = (age, group, {})
     dict[f'{name}'] = tup
     return dict
@@ -50,9 +53,23 @@ def add_grades_continuously(students):
 def showStudents(students):
     for item in students:
         print(f'{item}, Возраст: {students[item][0]}, Группа: {students[item][1]}')
-        sred = 0
-# Дописать функцию showStudents
+        for grade in students[item][2]:
+            # print(grade, f'{students[item][2][grade]}'[1:4])
+            average = sum(students[item][2][grade]) / len(students[item][2][grade])
+            print(Fore.CYAN + f'{grade}: ', average)
 
 def studentSearch(students):
-    for grade in students[grade][2]:
-        print(grade)
+    x = input(Fore.LIGHTBLUE_EX + 'Введите имя студента: ')
+    result = students.get(x, (Fore.RED + 'студент не найден'))
+    if result != (Fore.RED + 'студент не найден'):
+        print(f'{x}, Возраст: {result[0]}, Группа: {result[1]}')
+        for grade in students.get(x):
+            ...
+    else:
+        ...
+
+
+
+
+
+

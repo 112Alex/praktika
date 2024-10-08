@@ -4,7 +4,7 @@ def selectAction_value(string1, string2):
     x = 0
     while True:
         try:
-            x = int(input(Fore.BLUE + f'{string1}'))
+            x = int(input(Fore.LIGHTBLUE_EX + f'{string1}'))
             if x < 8 and x > 0:
                 break
             else:
@@ -17,8 +17,8 @@ def tryExceptInt(string):
     x = 0
     while True:
         try:
-            x = int(input(Fore.BLUE + f'{string}'))
+            x = int(input(Fore.LIGHTBLUE_EX + f'{string}'))
             break
         except ValueError:
-            print(Fore.BLUE + 'Введено некорректное значение')
+            print(Fore.LIGHTBLUE_EX + 'Введено некорректное значение')
     return x
