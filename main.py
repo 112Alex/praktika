@@ -10,7 +10,10 @@ from tryExcept import *
 init(autoreset=True)
 
 exit = True
-students = {"Antonio": (18, '21 ИС', {'математика': [2, 5], 'литература': [4, 5, 5], 'химия': [2, 3, 2]})} # {name: (age, group {предмет: оценка)}
+students = {
+    "Антон": (18, '21 ИС', {'математика': [2, 5], 'литература': [4, 5, 5], 'химия': [2, 3, 2]}),
+    "Илья": (18, '21 ИС', {'информатика': [4, 4, 4], 'химия': [2, 3, 4, 4]})
+} # {name: (age, group {предмет: оценка)}
 
 while exit:
 
@@ -36,7 +39,7 @@ while exit:
         case 1:
             students = {**students, **addStudent(students)} # {name: (age, group {предмет: оценка)}
         case 2:
-            add_grades_continuously(students)
+            addGradesContinuously(students)
         case 3:
             showStudents(students)
         case 4:
@@ -44,9 +47,10 @@ while exit:
         case 5:
             showCoolStudents(students)
         case 6:
-            ...
+            showAvgGrades(students)
         case 7:
             exit = False
+
 
 
 

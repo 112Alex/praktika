@@ -16,31 +16,32 @@ def addStudent(dict):
     return dict
 
 
-# Функция для добавления оценок студенту по предмету (непрерывный ввод)
-def add_grades_continuously(students):
+def addGradesContinuously(students):
     print(Fore.CYAN + "Введите имя студента для добавления оценок (или 'стоп' для выхода):", end=' ')
     name = input()
     if name.lower() == "стоп":
         return
 
     if name not in students:
-        print(f"Студент с именем {name} не найден.")
+        print(Fore.RED + f"Студент с именем {name} не найден.\n")
         return
 
-    print(f"Добавление оценок для студента {name}. Введите 'стоп' в качестве предмета, чтобы завершить.")
+    print(Fore.CYAN + f"Добавление оценок для студента {name}. Введите 'стоп' в качестве предмета, чтобы завершить.")
 
     while True:
-        subject = input("Введите предмет (или 'стоп' для завершения): ")
+        print(Fore.CYAN + "Введите предмет (или 'стоп' для завершения):", end=' ')
+        subject = input()
         if subject.lower() == "стоп":
             break
 
         try:
-            grade = int(input(f"Введите оценку по предмету {subject} (от 2 до 5): "))
+            print(Fore.CYAN + f"Введите оценку по предмету {subject} (от 2 до 5):", end=' ')
+            grade = int(input())
             if grade < 2 or grade > 5:
-                print("Ошибка: оценка должна быть в диапазоне от 2 до 5.")
+                print(Fore.RED + "Ошибка: оценка должна быть в диапазоне от 2 до 5.")
                 continue
         except ValueError:
-            print("Ошибка: введите корректную числовую оценку.")
+            print(Fore.RED + "Ошибка: введите корректную числовую оценку.")
             continue
 
         # Добавление оценки в список оценок студента
@@ -49,19 +50,20 @@ def add_grades_continuously(students):
         else:
             students[name][2][subject] = [grade]
 
-    print(f"Оценки для студента {name} добавлены.")
+    print(Fore.LIGHTBLUE_EX + f"Оценки для студента {name} добавлены.\n")
 
 
 def showStudents(students):
     for item in students:
-        print(Fore.WHITE + f'{item}, Возраст: {students[item][0]}, Группа: {students[item][1]}')
+        print(Fore.WHITE + f'{item}, Возраст: {students[item][0]}, Группа: {students[item][1]}', end=' ')
         for grade in students[item][2]:
             average = sum(students[item][2][grade]) / len(students[item][2][grade])
             print(Fore.CYAN + f'{grade}: ', (round(average, 2)))
         print()
 
 def studentSearch(students):
-    item = input(Fore.LIGHTBLUE_EX + 'Введите имя студента: ')
+    print(Fore.LIGHTBLUE_EX + 'Введите имя студента:', end=' ')
+    item = input()
     result = students.get(item, (Fore.RED + 'студент не найден'))
     if result != (Fore.RED + 'студент не найден'):
         print(f'{item}, Возраст: {result[0]}, Группа: {result[1]}')
@@ -90,6 +92,20 @@ def showCoolStudents(students):
     else:
         print(Fore.BLUE + 'Введено некорретное значение')
         showCoolStudents(students)
+
+
+def showAvgGrades(students):
+    sbjs = {} # {предмет: [оценка, оценка...]}
+
+    for item in students:
+        for subject in students[item][2]:
+            sbjs.update({subject})
+            for i in students[item][2][subject]:
+                sbjs[subject].append(i)
+
+    print(sbjs)
+# TODO: дописать функцию
+
 
 
 
