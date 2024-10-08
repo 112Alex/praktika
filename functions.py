@@ -3,6 +3,7 @@ from colorama import init
 init()
 init(autoreset=True)
 
+
 from tryExcept import tryExceptInt
 
 
@@ -54,9 +55,8 @@ def showStudents(students):
     for item in students:
         print(f'{item}, Возраст: {students[item][0]}, Группа: {students[item][1]}')
         for grade in students[item][2]:
-            # print(grade, f'{students[item][2][grade]}'[1:4])
             average = sum(students[item][2][grade]) / len(students[item][2][grade])
-            print(Fore.CYAN + f'{grade}: ', average)
+            print(Fore.CYAN + f'{grade}: ', (round(average, 2)))
 
 def studentSearch(students):
     x = input(Fore.LIGHTBLUE_EX + 'Введите имя студента: ')
